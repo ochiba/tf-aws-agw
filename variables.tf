@@ -1,21 +1,19 @@
 variable "profiles" {
   default = {
     main = "satellite"
-    prd  = "latte"
-    sso  = "default"
   }
 }
 
 variable "system" {
   default = {
-    id   = "com"
-    name = "Common"
+    id   = "ocb"
+    name = "Ochiba"
   }
 }
 variable "env" {
   default = {
-    id   = "prd"
-    name = "Production"
+    id   = "dev"
+    name = "Develop"
   }
 }
 variable "region" {
