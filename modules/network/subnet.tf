@@ -1,3 +1,7 @@
+data "aws_vpc" "main" {
+  id = var.vpc.id
+}
+
 resource "aws_subnet" "public" {
   count = length(var.subnets.public)
 
