@@ -1,6 +1,7 @@
 variable "stack_prefix" { type = string }
 variable "region" { type = map(any) }
 
+variable "allow_src_ip" { type = list }
 variable "ecs" { type = map(any) }
 variable "execution_role_arn" { type = string }
 variable "task_role_arn" { type = string }

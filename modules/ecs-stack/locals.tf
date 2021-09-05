@@ -14,4 +14,9 @@ locals {
     log_region         = var.region.name
     log_prefix         = var.ecs.container_name
   }
+  agw_vars = {
+    name        = "${var.stack_prefix}-agw-ecs-${var.ecs.container_name}"
+    nlb_uri     = "https://${aws_route53_record.org.name}"
+    vpc_link_id = aws_api_gateway_vpc_link.ecs.id
+  }
 }

@@ -26,7 +26,7 @@ variable "region" {
 
 variable "allow_src_ip" {
   default = [
-    "60.125.192.191"
+    "60.125.192.191/32"
   ]
 }
 

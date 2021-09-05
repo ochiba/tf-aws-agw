@@ -22,8 +22,7 @@ resource "aws_iam_role" "my_switch" {
   name               = "${var.stack_prefix}-SwitchRole"
   assume_role_policy = data.aws_iam_policy_document.my_switch_assume_role.json
   managed_policy_arns = [
-    aws_iam_policy.my_switch_role.arn,
-    data.aws_iam_policy.codepipeline_full_access.arn
+    aws_iam_policy.my_switch_role.arn
   ]
 }
 
@@ -62,6 +61,26 @@ data "aws_iam_policy_document" "my_switch_role" {
     actions   = [ "iam:PassRole" ]
     resources = [
       "arn:aws:iam::${var.main_account_id}:role/${var.stack_prefix}-*"
+    ]
+  }
+  statement {
+    sid       = "APIGatewayAdministrator"
+    effect    = "Allow"
+    actions   = [ "apigateway:*" ]
+    resources = [
+      "arn:aws:apigateway:*::/*"
+    ]
+  }
+  statement {
+    sid       = "CodeBrothersDeveloper"
+    effect    = "Allow"
+    actions   = [
+      "codepipeline:*",
+      "codestar-connections:*"
+    ]
+    resources = [
+      "arn:aws:codepipeline:*:${var.main_account_id}:*",
+      "arn:aws:codestar-connections:*:${var.main_account_id}:*",
     ]
   }
 }

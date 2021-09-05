@@ -23,6 +23,7 @@ module "ecs_web" {
   stack_prefix = local.stack_prefix
   region       = var.region
 
+  allow_src_ip       = var.allow_src_ip
   ecs                = var.ecs_web
   execution_role_arn = module.iam.roles.ecs_service.arn
   task_role_arn      = module.iam.roles.ecs_task.arn
